@@ -21,13 +21,14 @@ namespace FloatingPointer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.BackColor = Color.Red;
+            this.BackColor = Color.FromArgb(255, 131, 0);
+            //Color.Red;
             this.TopMost = true;
             //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             GraphicsPath path = new GraphicsPath();
             //path.AddClosedCurve() bad
             //good: path.AddEllipse(0, 0, this.Width, this.Height);
-            GraphicsPath myPath = new GraphicsPath();
+            GraphicsPath myPath = new GraphicsPath();            
             myPath.StartFigure();
             if (arrowIsLeft)
             { 
@@ -96,6 +97,20 @@ namespace FloatingPointer
         {
             Color randomColor = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256));
             this.BackColor = randomColor;
+        }
+
+       // private System.Drawing.Color oldButtonColor = Color.Red;
+
+        private void button1_MouseHover(object sender, EventArgs e)
+        {
+           // oldButtonColor = button1.ForeColor;
+            button1.BackColor = this.BackColor;
+        }
+
+        private void button1_MouseLeave(object sender, EventArgs e)
+        {
+           // button1.ForeColor = oldButtonColor;
+            button1.UseVisualStyleBackColor = true;
         }
     }
 }
