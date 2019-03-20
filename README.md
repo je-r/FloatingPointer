@@ -11,3 +11,6 @@ To get it:
 - download compiled version from the Binary directory of this repository
 
 
+Upcoming features:
+
+- text inside of arrow that increases the arrow size when entered
