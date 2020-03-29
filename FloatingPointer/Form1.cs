@@ -21,7 +21,7 @@ namespace FloatingPointer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.BackColor = Color.FromArgb(255, 131, 0);
+            this.BackColor = Color.FromArgb(255,140,0);
             //Color.Red;
             this.TopMost = true;
             //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
