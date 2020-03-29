@@ -95,8 +95,17 @@ namespace FloatingPointer
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Color randomColor = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256));
-            this.BackColor = randomColor;
+            //Color randomColor = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256));
+            //this.BackColor = randomColor;
+                 // Show the color dialog.
+            ColorDialog colorDialog1 = new ColorDialog();
+            DialogResult result = colorDialog1.ShowDialog();
+            // See if user pressed ok.
+            if (result == DialogResult.OK)
+            {
+                // Set form background to the selected color.
+                this.BackColor = colorDialog1.Color;
+            }
         }
 
        // private System.Drawing.Color oldButtonColor = Color.Red;
