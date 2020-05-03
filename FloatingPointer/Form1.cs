@@ -121,6 +121,11 @@ namespace FloatingPointer
            // button1.ForeColor = oldButtonColor;
             button1.UseVisualStyleBackColor = true;
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
