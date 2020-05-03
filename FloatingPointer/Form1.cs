@@ -21,38 +21,59 @@ namespace FloatingPointer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.BackColor = Color.FromArgb(255,140,0);
+            this.BackColor = Color.FromArgb(255, 140, 0);
             //Color.Red;
             this.TopMost = true;
             //this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             GraphicsPath path = new GraphicsPath();
             //path.AddClosedCurve() bad
             //good: path.AddEllipse(0, 0, this.Width, this.Height);
-            GraphicsPath myPath = new GraphicsPath();            
+            GraphicsPath myPath = new GraphicsPath();
             myPath.StartFigure();
-            if (arrowIsLeft)
-            { 
-                myPath.AddLine(new Point(10, this.Height / 2), new Point(this.Width / 3, 0));
-                myPath.AddLine(new Point(this.Width / 3, this.Height/3), new Point(this.Width, this.Height/3));
-                myPath.AddLine(new Point(this.Width, this.Height / 3), new Point(this.Width, 2 *(this.Height / 3)));
-                myPath.AddLine(new Point(this.Width, 2 * (this.Height / 3)), new Point(this.Width / 3, 2 * (this.Height / 3)));
-                myPath.AddLine(new Point(this.Width / 3, 2 * (this.Height / 3)), new Point(this.Width / 3, this.Height) );
-            } else
-            { 
-                //button1.Location.X = button1.Location.X
-                myPath.AddLine(new Point(10, this.Height / 3), new Point(2*(this.Width / 3), this.Height / 3));
-                myPath.AddLine(new Point(2 * (this.Width / 3), this.Height / 3), new Point(2 * (this.Width / 3), 0));
-                myPath.AddLine(new Point(2 * (this.Width / 3), 0), new Point(this.Width , this.Height/2));
-                myPath.AddLine(new Point(this.Width, this.Height / 2), new Point(2 * (this.Width / 3), this.Height ));
+            //myPath.SetMarkers();
+            if (arrowIsVertical)
+            {
+                if (arrowIsUp)
+                { // up
+                    myPath.AddLine(0, this.Height / 2, this.Width / 2, 0);
+                    myPath.AddLine(this.Width / 2, 0, this.Width, this.Height / 2);
+                    myPath.AddLine(this.Width, this.Height / 2, this.Width, this.Height);
+                    myPath.AddLine(this.Width, this.Height, 0, this.Height);
+                    myPath.AddLine(0, this.Height, 0, this.Height / 2);
+                }
+                else
+               { // down
+                    myPath.AddLine(0, 0, this.Width , 0);
+                    myPath.AddLine( this.Width, 0, this.Width, this.Height/2);
+                    myPath.AddLine( this.Width, this.Height / 2, this.Width/2, this.Height);
+                    myPath.AddLine( this.Width / 2, this.Height, 0, this.Height/2);
+                    myPath.AddLine( 0, this.Height / 2, 0,0);
+                }
+            } else 
+            {
 
-                myPath.AddLine(new Point(2 * (this.Width / 3), this.Height), new Point(2 * (this.Width / 3), 2 * (this.Height / 3)));
+                if (arrowIsLeft)
+                {
+                    myPath.AddLine(new Point(10, this.Height / 2), new Point(this.Width / 3, 0));
+                    myPath.AddLine(new Point(this.Width / 3, this.Height / 3), new Point(this.Width, this.Height / 3));
+                    myPath.AddLine(new Point(this.Width, this.Height / 3), new Point(this.Width, 2 * (this.Height / 3)));
+                    myPath.AddLine(new Point(this.Width, 2 * (this.Height / 3)), new Point(this.Width / 3, 2 * (this.Height / 3)));
+                    myPath.AddLine(new Point(this.Width / 3, 2 * (this.Height / 3)), new Point(this.Width / 3, this.Height));
+                }
+                else
+                {
+                    //button1.Location.X = button1.Location.X
+                    myPath.AddLine(new Point(10, this.Height / 3), new Point(2 * (this.Width / 3), this.Height / 3));
+                    myPath.AddLine(new Point(2 * (this.Width / 3), this.Height / 3), new Point(2 * (this.Width / 3), 0));
+                    myPath.AddLine(new Point(2 * (this.Width / 3), 0), new Point(this.Width, this.Height / 2));
+                    myPath.AddLine(new Point(this.Width, this.Height / 2), new Point(2 * (this.Width / 3), this.Height));
 
-                myPath.AddLine(new Point(2 * (this.Width / 3), 2 * (this.Height / 3)), new Point(10, 2 * (this.Height / 3)));
+                    myPath.AddLine(new Point(2 * (this.Width / 3), this.Height), new Point(2 * (this.Width / 3), 2 * (this.Height / 3)));
 
-                //  myPath.AddLine(new Point(this.Width / 3, 0), new Point(this.Width, 0));
-                //  myPath.AddLine(new Point(this.Width, 0), new Point(this.Width, this.Height));
-                // myPath.AddLine(new Point(this.Width, this.Height), new Point(this.Width / 3, this.Height));
+                    myPath.AddLine(new Point(2 * (this.Width / 3), 2 * (this.Height / 3)), new Point(10, 2 * (this.Height / 3)));
+                }
             }
+            
             myPath.CloseFigure();
             Region region = new Region(myPath);
    
@@ -83,10 +104,12 @@ namespace FloatingPointer
         }
 
         private bool arrowIsLeft = true;
+        private bool arrowIsUp = true;
+        private bool arrowIsVertical = false;
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            arrowIsVertical = false;
             arrowIsLeft = ! arrowIsLeft;
             this.Form1_Load(sender, e);
         }
@@ -124,7 +147,9 @@ namespace FloatingPointer
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            arrowIsVertical = true;
+            arrowIsUp = !arrowIsUp;
+            this.Form1_Load(sender, e);
         }
     }
 }
