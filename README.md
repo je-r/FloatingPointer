@@ -13,4 +13,7 @@ To get it:
 
 Upcoming features:
 
+- rotating 90 degree too, not just 180 degree
+
 - text inside of arrow that increases the arrow size when entered
+
